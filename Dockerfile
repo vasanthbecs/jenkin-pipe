@@ -1,5 +1,5 @@
 FROM node:latest
-MAINTAINER vasanthak@smartshittech.com
+MAINTAINER vasanthak@smartshittec
 # set default workdir
 WORKDIR /usr/src
 # Add package.json to allow for caching
