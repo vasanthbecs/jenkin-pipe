@@ -1,6 +1,6 @@
 FROM node:boron
 
-# Create app directory
+# Create app directory for
 WORKDIR /usr/src/app
 
 # Install app dependencies
