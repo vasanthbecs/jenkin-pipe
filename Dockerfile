@@ -1,17 +1,19 @@
-FROM node:latest
-MAINTAINER vasanthak@smartshittec
-# set default workdir
-WORKDIR /usr/src
-# Add package.json to allow for caching
-#COPY package.json /usr/src/package.json
+FROM node:boron
+
+# Create app directory
+WORKDIR /usr/src/app
+
 # Install app dependencies
+COPY package.json .
+# For npm@5 or later, copy package-lock.json as well
+# COPY package.json package-lock.json ./
+
 RUN npm install
-# Bundle app source and tests
-COPY app.js /usr/src/
-#COPY test /usr/src/test
-#COPY script /usr/src/script
-# user to non-privileged user
-#USER nobody
-# Expose the application port and run application
-EXPOSE 5000
-CMD [“node”,”app.js”]
+# If you are building your code for production
+# RUN npm install --only=production
+
+# Bundle app source
+COPY . .
+
+EXPOSE 8080
+CMD [ "npm", "start" ]
